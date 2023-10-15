@@ -62,12 +62,17 @@ class Player:
         if (len(game.players()) == 0):
             return None
         players_unique = game.players()
-        player_dict = {}
+        # player_dict = {}
+        # for player in players_unique:
+        #     player_dict[player] = game.average_score(player)
+        # players = list(player_dict.keys())
+        # scores = list(player_dict.values())
+        # return players[scores.index(max(scores))] 
+        players_list = []
         for player in players_unique:
-            player_dict[player] = game.average_score(player)
-        players = list(player_dict.keys())
-        scores = list(player_dict.values())
-        return players[scores.index(max(scores))] 
+            players_list.append([player, game.average_score(player)])
+        sorted_list = sorted(players_list, key=lambda v: v[1], reverse=True) 
+        return sorted_list[0][0]
     
 
 class Result:
